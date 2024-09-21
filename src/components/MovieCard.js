@@ -1,13 +1,24 @@
 import React from 'react';
-import { IMG_CDN_URL } from '../utils/constant';
+import { useDispatch } from 'react-redux';
+import { IMG_URL } from '../utils/constant';
+import { addDisplayMovie } from '../utils/moviesSlice';
 
-const MovieCard = ({posterPath}) => {
-    if(!posterPath) return null;
+const MovieCard = ({ data }) => {
+    const dispatch = useDispatch();
+
+    const handleMovieCardClick = () => {
+        dispatch(addDisplayMovie(data));
+    }
+    
     return (
-        <div className='w-30 md:w-36 pr-4'>
-            <img alt='Movie Card' src={IMG_CDN_URL + posterPath}/> 
-        </div>
-    );
-};
+        <div className='sm:w-48 w-36 mr-3 cursor-pointer  ' onClick={handleMovieCardClick}>
 
-export default MovieCard;
+
+            <img src={IMG_URL + data?.poster_path} alt={data?.original_title} />
+            <div className='text-white font-bold relative  '>{data?.title}</div>
+
+        </div>
+    )
+}
+
+export default MovieCard

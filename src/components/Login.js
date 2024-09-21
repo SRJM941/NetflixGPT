@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import { BG_URL, user_avatar } from '../utils/constant';
 
-
 const Login = () => {
 
     const [isSignInForm,setisSignInForm] = useState(true);
@@ -60,52 +59,70 @@ const Login = () => {
                  setErrorMessage(errorCode+"-"+errorMessage);
             });
         }
-
     }
 
     const toggleSignInForm = () => {
        setisSignInForm(!isSignInForm);
     }
 
-
     return (
         <div>
             <Header/>
-            <div className='absolute'>
-                <img className='h-screen object-cover' src={BG_URL}   alt='background_image'/>
+            <div className='absolute inset-0'>
+                <img className='h-full w-full object-cover' src={BG_URL} alt='background_image' />
             </div>
-            <form 
-                onSubmit={(e) => e.preventDefault()} 
-                className='w-full absolute p-12 bg-black md:w-3/12 my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'>
-                <h1 className='font-bold text-3xl py-4'>
-                {isSignInForm ? "Sign In" : "Sign Up" }</h1>
 
-                {!isSignInForm && <input ref={name} type='text' placeholder='Name'
-                 className='p-4 my-2 w-full bg-gray-700'  />}
+            <div className="relative flex justify-center items-center min-h-screen">
+                <form 
+                    onSubmit={(e) => e.preventDefault()} 
+                    className='w-full max-w-md p-8 md:p-12 bg-black text-white rounded-lg bg-opacity-80 mx-4'
+                >
+                    <h1 className='font-bold text-2xl md:text-3xl py-4'>
+                    {isSignInForm ? "Sign In" : "Sign Up" }
+                    </h1>
 
-                <input 
-                  ref={email}
-                  type='text' 
-                  placeholder='Email Address'
-                  className='p-4 my-2 w-full bg-gray-700' 
-                />
+                    {!isSignInForm && (
+                        <input 
+                            ref={name} 
+                            type='text' 
+                            placeholder='Name'
+                            className='p-3 md:p-4 my-2 w-full bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-700'
+                        />
+                    )}
 
-                <input 
-                  ref={password}
-                  type='Password' 
-                  placeholder='Password'
-                  className='p-4 my-2 w-full bg-gray-700'
-                />
+                    <input 
+                        ref={email}
+                        type='email' 
+                        placeholder='Email Address'
+                        className='p-3 md:p-4 my-2 w-full bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-700'
+                    />
 
-                <p className='text-red-500 font-bold text-lg py-1'>{errorMessage}</p>
+                    <input 
+                        ref={password}
+                        type='password' 
+                        placeholder='Password'
+                        className='p-3 md:p-4 my-2 w-full bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-700'
+                    />
 
-                <button className='p-4 my-4 bg-red-700 w-full cursor-pointer' onClick={handleButtonClick}>
-                {isSignInForm ? "Sign In" : "Sign Up" }</button>
+                    {errorMessage && (
+                        <p className='text-red-500 font-bold text-sm md:text-lg py-2'>{errorMessage}</p>
+                    )}
 
-                <p className='py-4 cursor-pointer' onClick={toggleSignInForm}>
-                {isSignInForm ? "New to NetFlix? Sign Up Now" : "Already register? Sign In Now" }
-                </p>
-            </form>
+                    <button 
+                        className='p-3 md:p-4 my-4 bg-red-700 w-full rounded-md text-white font-semibold hover:bg-red-800 transition duration-300 ease-in-out'
+                        onClick={handleButtonClick}
+                    >
+                    {isSignInForm ? "Sign In" : "Sign Up"}
+                    </button>
+
+                    <p 
+                        className='py-4 cursor-pointer text-center text-sm md:text-base underline hover:text-gray-400'
+                        onClick={toggleSignInForm}
+                    >
+                    {isSignInForm ? "New to Netflix? Sign Up Now" : "Already registered? Sign In Now"}
+                    </p>
+                </form>
+            </div>
         </div>
     );
 };

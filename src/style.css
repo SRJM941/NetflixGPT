@@ -1,0 +1,10 @@
+/* In your global CSS file */
+.scrollbar-hide {
+    overflow-x: auto; /* Allow horizontal scrolling */
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
