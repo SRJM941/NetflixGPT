@@ -18,7 +18,7 @@ const GptSearchBar = () => {
         const json = await data.json();
         return json.results;
     }
-    
+
     const handleGptSearchClick = async () => {
       try {
         // Define the query for the GPT model
@@ -27,7 +27,6 @@ const GptSearchBar = () => {
         // Define the base URL and the API key
         const baseURL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
         const API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
-        console.log(API_KEY);
     
         // Corrected template literal syntax for the URL
         const url = `${baseURL}?key=${API_KEY}`;
@@ -41,15 +40,12 @@ const GptSearchBar = () => {
           },
           data: {"contents":[{parts:[{text:gptQuery}]}]},
         });
-        console.log("res ", response);
         // Extract the text from the response
         const movieText = response.data.candidates[0].content.parts[0].text;
     
         // Split the text into an array by commas and trim any whitespace
         const movieArray = movieText.split(',').map(movie => movie.trim());
-        console.log(movieArray);
         const promiseArray = movieArray.map((movie)=> searchMovieTMDB(movie));
-        console.log(promiseArray);
         const tmdbResults = await Promise.all(promiseArray);
 
         dispatch(addGptMoovieResult({movieNames: movieArray,movieResults: tmdbResults}));
