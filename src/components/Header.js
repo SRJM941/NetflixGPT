@@ -46,44 +46,44 @@ const Header = () => {
     };
 
     return (
-    <div className='absolute w-screen px-4 sm:px-8 py-1 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between items-center'>
-        <img 
-            className='w-28 sm:w-36 mx-auto md:mx-0'  // Reduced width of the logo
-            src={logo} 
-            alt='logo' 
-        />
-        {user && (
-            <div className='flex items-center justify-end w-full mt-1 md:mt-0'>  
-                {showGptSearch && (
-                    <select className='p-1 m-1 bg-gray-900 text-white rounded-md' onChange={handleLanguageChange}>
-                        {SUPPORTED_LANGUAGES.map(lang => (
-                            <option key={lang.identifier} value={lang.identifier}>
-                                {lang.name}
-                            </option>
-                        ))}
-                    </select>
-                )}
-                <button 
-                    className='px-2 py-1 m-1 bg-purple-800 text-white rounded-lg hover:bg-purple-700 transition duration-300'  // Reduced padding
-                    onClick={handleGptSearchClick}
-                >
-                    {showGptSearch ? "Homepage" : "GPT Search"}
-                </button>
-                <img 
-                    className='hidden md:block w-10 h-10 rounded-full'  // Reduced size of user image
-                    alt="user"  
-                    src={user?.photoURL} 
-                />
-                <button 
-                    onClick={handleSignOut} 
-                    className='font-bold text-white m-1'  // Reduced margin
-                >
-                    (Sign out)
-                </button>
-            </div>
-        )}
-    </div>
-);
+        <div className='absolute w-full px-4 sm:px-6 py-1 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between items-center'>
+            <img 
+                className='w-24 sm:w-32 mx-auto md:mx-0' // Adjusted logo size for responsiveness
+                src={logo} 
+                alt='logo' 
+            />
+            {user && (
+                <div className='flex items-center justify-end w-full mt-1 md:mt-0'>  
+                    {showGptSearch && (
+                        <select className='p-1 m-1 bg-gray-900 text-white rounded-md' onChange={handleLanguageChange}>
+                            {SUPPORTED_LANGUAGES.map(lang => (
+                                <option key={lang.identifier} value={lang.identifier}>
+                                    {lang.name}
+                                </option>
+                            ))}
+                        </select>
+                    )}
+                    <button 
+                        className='px-2 py-1 m-1 bg-purple-700 text-white rounded-lg hover:bg-purple-600 transition duration-300'
+                        onClick={handleGptSearchClick}
+                    >
+                        {showGptSearch ? "Homepage" : "GPT Search"}
+                    </button>
+                    <img 
+                        className='hidden md:block w-8 h-8 rounded-full ml-2' // Reduced size of user image for better fit
+                        alt="user"  
+                        src={user?.photoURL} 
+                    />
+                    <button 
+                        onClick={handleSignOut} 
+                        className='font-bold text-white mx-2'  // Adjusted margin for spacing consistency
+                    >
+                        (Sign out)
+                    </button>
+                </div>
+            )}
+        </div>
+    );
 };
 
 export default Header;

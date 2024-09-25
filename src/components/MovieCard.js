@@ -11,14 +11,20 @@ const MovieCard = ({ data }) => {
     }
     
     return (
-        <div className='sm:w-48 w-36 mr-3 cursor-pointer  ' onClick={handleMovieCardClick}>
-
-
-            <img src={IMG_URL + data?.poster_path} alt={data?.original_title} />
-            <div className='text-white font-bold relative  '>{data?.title}</div>
-
+        <div 
+            className='w-36 sm:w-48 mx-2 cursor-pointer transition-transform transform hover:scale-105' 
+            onClick={handleMovieCardClick}
+        >
+            <img 
+                className='w-full h-auto rounded-md shadow-md' 
+                src={IMG_URL + data?.poster_path} 
+                alt={data?.original_title} 
+            />
+            <div className='text-white font-bold mt-2 text-sm sm:text-base text-center'>
+                {data?.title}
+            </div>
         </div>
     )
 }
 
-export default MovieCard
+export default MovieCard;
