@@ -68,7 +68,7 @@ const Login = () => {
             <div className="relative flex justify-center items-center min-h-screen">
                 <form
                     onSubmit={(e) => e.preventDefault()}
-                    className='w-full max-w-lg p-6 md:p-10 bg-black bg-opacity-90 text-white rounded-lg shadow-lg mx-4'
+                    className='w-full max-w-lg p-6 md:p-10 bg-black bg-opacity-80 text-white rounded-lg shadow-lg mx-4'
                 >
                     <h1 className='text-center font-bold text-xl md:text-3xl py-2 md:py-4'>
                         {isSignInForm ? "Sign In" : "Sign Up"}
